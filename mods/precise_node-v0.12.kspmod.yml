@@ -1,0 +1,40 @@
+# Precise Node -v 0.12 install
+---
+
+meta:
+  name: Precise Node
+  version:
+    major: 0
+    minor: 12
+    patch: 0
+
+config:
+  url: https://github.com/blizzy78/ksp-precisenode/archive/0.12.zip
+
+# All folders should end in /, eg: KSP_HOME/GameData/PreciseNode/
+# All `to:` paths are relative the root of the extracted zip.
+# All `from:` paths are relative the KSP root
+files:
+  -
+    from: PreciseNode/ #
+    to: GameData/PreciseNode/
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Dependency Management Incomplete
+dependencies:
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

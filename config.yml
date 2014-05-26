@@ -1,0 +1,12 @@
+# Config file for KspMod
+
+---
+mod_search_path:
+  - v!KSP_MOD_ROOT/mods
+
+config_search_path:
+  - v!KSP_MOD_ROOT/config.yml
+  - v!HOME/.ksp_mod/config.yml
+  - v!HOME/.ksp_mod_config.yml
+
+staging_directory: v!HOME/.ksp_mod/staging
