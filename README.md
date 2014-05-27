@@ -1,7 +1,7 @@
 # KSP Plugin Management
 ---
 
-### Warning: Pre-Alpha Software
+#### Warning: Pre-Alpha Software
 
 A simple tool for adding/changing plugins for Kerbal Space Program.
 
@@ -25,7 +25,7 @@ bundle exec ruby ./ksp_mod.rb list
 
 ## Roadmap
 
-### TODO R0
+#### TODO R0
 
   - version: `>~ 0.0.1`
   - [ ] ksp_mod install
@@ -33,13 +33,13 @@ bundle exec ruby ./ksp_mod.rb list
   - [ ] KSP_HOME detection
   - [x] ksp_mod list
 
-### TODO R1
+#### TODO R1
 
   - version: `>~ 0.1.0`
   - [ ] Dependency management
   - [ ] Installed Plugin Detection
 
-### TODO R2
+#### TODO R2
 
   - version: `>~ 0.2.0`
   - [ ] KPluginSet (Similar to Gemfile)
