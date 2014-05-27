@@ -12,7 +12,7 @@ A simple tool for adding/changing plugins for Kerbal Space Program.
 
 ## Installation
 
-Note: This will change after R0 to be
+Note: This will change after R0 to be more friendly.
 
   - Clone the repository
   - Install the bundle (`bundle`)
