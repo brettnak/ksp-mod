@@ -28,8 +28,8 @@ bundle exec ruby ./ksp_mod.rb list
 #### TODO R0
 
   - version: `>~ 0.0.1`
-  - [ ] ksp_mod install <plugin>[@<version>]
-  - [ ] ksp_mod uninstall <plugin>[@<version>]
+  - [ ] ksp_mod install plugin[@version]
+  - [ ] ksp_mod uninstall plugin[@version]
   - [ ] KSP_HOME detection
   - [x] ksp_mod list
 
