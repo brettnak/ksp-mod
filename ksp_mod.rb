@@ -2,9 +2,8 @@
 
 require 'rubygems'
 require 'yaml'
-require 'awesome_print'
-require 'os'
 require 'logger'
+require 'os'
 
 module KspMod
   ROOT    = File.expand_path( "..", __FILE__ )
