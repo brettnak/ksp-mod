@@ -1,0 +1,18 @@
+# General stuff
+*~
+.DS_Store
+log/*
+tmp
+
+# RVM files
+.gemrc
+
+# Various documentations
+doc/
+.yardoc
+
+# Texteditor files
+*.sublime-workspace
+
+# Local-only files
+*.lm.rb

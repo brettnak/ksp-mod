@@ -32,8 +32,8 @@ class KspMod::Config
     csp = config.fetch( 'config_search_path', [] )
     sd  = config.fetch( 'staging_directory', nil )
 
-    msp.map! { |p| puts p.inspect; template_path_entry(p) }
-    csp.map! { |p| puts p.inspect; template_path_entry(p) }
+    msp.map! { |p| template_path_entry(p) }
+    csp.map! { |p| template_path_entry(p) }
 
     msp.reverse!
     csp.reverse!
