@@ -23,14 +23,16 @@ class KspMod::Mod
     parse( yaml_path )
   end
 
-  def install
+  # options - {}
+  #   :stage - Do everything but do not copy into the KSP home directory
+  def install( options = {} )
     log.info( "Installing #{@name} @ #{version_s}" )
     set_shell
 
     create_staging_directory
     download
     unpack
-    copy_files
+    copy_files unless options[:stage]
   end
 
   def create_staging_directory
@@ -39,17 +41,27 @@ class KspMod::Mod
   end
 
   def download
+    log.info( "Downloading Archive" )
     log.debug( "Downloading archive from: #{@url}" )
     log.debug( "Downloading archive to: #{archive_location}" )
+
+    @shell.download( @url, archive_location )
   end
 
   def unpack
-    log.debug( "Unpacking" )
+    log.info( "Unpacking Archive" )
+    log.debug( "Unpacking Archive to #{staging_directory}" )
 
+    # TODO: use archive_type to determine correct unpacking method for @shell
+    @shell.unzip( archive_location, staging_directory )
   end
 
   def copy_files
-    log.debug( "Copying files" )
+    log.info( "Copying files" )
+
+    @files.each do |file|
+      file.install( @shell, staging_directory )
+    end
   end
 
   def uninstall
@@ -102,6 +114,7 @@ class KspMod::Mod
   end
 
   class ManagedPath
+    include KspMod::Loggable
     attr_accessor :src, :dest
 
     # str_hash -
@@ -110,6 +123,15 @@ class KspMod::Mod
     def initialize( str_hash )
       @src  = str_hash['src']
       @dest = str_hash['dest']
+    end
+
+    def install( shell, src_stage )
+      log.info( "Installing file #{@src} to #{@dest}")
+
+      abs_src  = File.expand_path( @src,  src_stage )
+      abs_dest = File.expand_path( @dest, KspMod.config.ksp_root )
+
+      shell.cp( abs_src, abs_dest )
     end
   end
 end

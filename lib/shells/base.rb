@@ -20,11 +20,33 @@ module KspMod::Shell
     end
 
     # Provided by native ruby
-    def mv( source, dest )
+    def cp( source, dest )
+      if @dryrun
+        log.info( "DRYRUN" ) { "Recursive copy: #{source} -> #{dest}" }
+        return
+      end
+
+      unless File.exists?( source )
+        warn "Could not find `#{source}`.  Did you mean `stage` instead of `install`?"
+        exit 1
+      end
+
+      log.debug( "SHELL" ) { "Recursive copy of #{source} -> #{dest}" }
+      FileUtils.copy_entry( source, dest, false, false, false )
     end
 
-    # Provided by native ruby
-    def cp( source, dest )
+    def download( source, dest )
+      if @dryrun
+        log.info( "DRYRUN" ) { "Shell would download #{source} to #{dest}"}
+        return
+      end
+
+      log.debug( "SHELL" ) { "Opening `#{dest}` for writing" }
+      File.open( dest, 'wb' ) do |f|
+        log.debug( "SHELL" ) { "Downloading #{source}" }
+        f.write HTTParty.get( source ).parsed_response
+        log.debug( "SHELL" ) { "Wrote #{f.pos / 1024} KB to `#{dest}`"}
+      end
     end
 
     # Provided by native ruby
@@ -34,7 +56,7 @@ module KspMod::Shell
         return
       end
 
-      log.debug( "FS" ) { "Shell is creating `#{dir}`" }
+      log.debug( "SHELL" ) { "Creating `#{dir}`" }
       FileUtils.mkdir_p( dir ) unless @dryrun
     end
 

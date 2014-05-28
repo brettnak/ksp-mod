@@ -19,7 +19,9 @@ class KspMod::Cli
     end
   end
 
-  def install
+  # options - {}
+  #   :stage - Do everything but do not copy into the KSP home directory
+  def install( options = {} )
     self.load
     modname = ARGV.shift
 
@@ -31,7 +33,7 @@ class KspMod::Cli
     mod_version = modname.split("@")
     mod = mod_version.size == 2 ? select_mod_version( mod_version.first, mod_version.last ) : select_mod_max_version( mod_version.first )
 
-    mod.install
+    mod.install( options )
   end
 
   def uninstall
@@ -101,11 +103,13 @@ class KspMod::Cli
       self.list
     when :install
       self.install
+    when :stage
+      self.install( :stage => true )
     when :uninstall
       puts "uninstall"
     else
       warn "I don't recognize #{command} as a valid command."
-      warn "I support only `list`, `install`, and `uninstall`"
+      warn "I support only `list`, `install`, `stage`, and `uninstall`"
       exit 1
     end
   end

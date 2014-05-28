@@ -8,9 +8,37 @@ class KspMod::Shell::Sh < KspMod::Shell::Base
     super
   end
 
-  def unzip
+  def unzip( zip_file, destdir )
+    if @dryrun
+      log.info( "DRYRUN" ) { "Unzip #{zip_file} to #{destdir}" }
+      return
+    end
+
+    cmd = "unzip -u #{zip_file} -d #{destdir}"
+
+    exit_value = nil
+
+    log.debug( "SHELL-SH" ) { "Executing `#{cmd}` as subprocess" }
+    Open3.popen3( cmd ) do |stdin, stdout, stderr, waiter|
+      Thread.new do
+        stdout.each_line do |line|
+          log.debug( "SHELL-SH-OUT" ) { line.strip }
+        end
+      end
+
+      Thread.new do
+        stderr.each_line do |line|
+          log.debug( "SHELL-SH-ERR" ) { line }
+        end
+      end
+
+      exit_value = waiter.value
+    end
+
+    log.debug( "SHELL-SH" ) { "`#{cmd}` exited with code #{exit_value.exitstatus}" }
   end
 
   def git
+    raise NotImplementedError, "Not yet complete."
   end
 end

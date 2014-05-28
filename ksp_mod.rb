@@ -5,6 +5,8 @@ require 'yaml'
 require 'logger'
 require 'os'
 require 'fileutils'
+require 'httparty'
+require 'open3'
 
 module KspMod
   ROOT    = File.expand_path( "..", __FILE__ )
@@ -28,6 +30,7 @@ module KspMod
     KspMod.logger.info("config_search: " + KspMod.config.config_search.inspect )
     KspMod.logger.info("mod_search: " + KspMod.config.mod_search.inspect )
     KspMod.logger.info("dryrun: " + KspMod.config.dryrun.inspect )
+    KspMod.logger.info("ksp root: " + KspMod.config.ksp_root.inspect )
 
     cli = KspMod::Cli.new
     cli.main

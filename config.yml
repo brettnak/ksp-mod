@@ -11,4 +11,6 @@ config_search_path:
 
 staging_directory: v!HOME/.ksp_mod/staging
 
-dryrun: true
+ksp_root: v!HOME/Library/Application Support/Steam/SteamApps/common/Kerbal Space Program
+
+# dryrun: true
