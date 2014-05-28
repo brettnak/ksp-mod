@@ -1,14 +1,22 @@
 module KspMod::Shell
   class Base
+    include KspMod::Loggable
 
-    # Detect the proper subclass for this system
-    def new_for_system
-      shell_class = determine_ksp_shell
+    def initialize
+      @dryrun = KspMod.config.dryrun
     end
 
-    def determine_ksp_shell
+    # Detect the proper subclass for this system
+    def self.new_for_system
+      shell_class = determine_ksp_shell
+
+      KspMod.logger.debug( "Set shell to `#{shell_class}`.  Based on fs_type: #{KspMod::FS_TYPE}")
+      return shell_class.new
+    end
+
+    def self.determine_ksp_shell
       Kernel.require( './lib/shells/sh' )
-      shell = KspMod::Shell::Sh
+      return KspMod::Shell::Sh
     end
 
     # Provided by native ruby
@@ -21,9 +29,13 @@ module KspMod::Shell
 
     # Provided by native ruby
     def mkdir( dir )
-    end
+      if @dryrun
+        log.info( "DRYRUN" ) { "Shell would create `#{dir}`" }
+        return
+      end
 
-    def download( )
+      log.debug( "FS" ) { "Shell is creating `#{dir}`" }
+      FileUtils.mkdir_p( dir ) unless @dryrun
     end
 
     def unzip( file )

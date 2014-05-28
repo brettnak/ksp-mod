@@ -1,22 +1,50 @@
 class KspMod::Cli
+  include KspMod::Loggable
+
   attr_accessor :mods
 
   def initialize
-    @mods = []
+    @mods = {}
   end
 
   def list
     self.load
 
-    @mods.each do |mod|
-      puts mod.to_s
+    # TODO: Possibly only show the latest version?
+    @mods.each_pair do |mod_name, versions|
+      print mod_name + " "
+      print "("
+      print versions.keys.join( " ,")
+      puts ")"
     end
   end
 
   def install
+    self.load
+    modname = ARGV.shift
+
+    if modname.nil?
+      warn "You must specify a mod"
+      exit 1
+    end
+
+    mod_version = modname.split("@")
+    mod = mod_version.size == 2 ? select_mod_version( mod_version.first, mod_version.last ) : select_mod_max_version( mod_version.first )
+
+    mod.install
   end
 
   def uninstall
+  end
+
+  def select_mod_version( modname, human_version )
+    return @mods[modname][human_version]
+  end
+
+  def select_mod_max_version( modname )
+    # version is a human version, not a comparable version
+    sorted_by_version = @mods[modname].values.sort { |a,b| a.version_i <=> b.version_i }
+    return sorted_by_version.last
   end
 
   # options -
@@ -35,7 +63,7 @@ class KspMod::Cli
     end
 
     initial_dir = options[:dir]
-    KspMod.logger.info "Module directory discovered: #{initial_dir}"
+    log.info "Module directory discovered: #{initial_dir}"
 
     return [] unless File.exists?( initial_dir )
 
@@ -56,7 +84,8 @@ class KspMod::Cli
 
       next unless f =~ /\.kspmod\.yml/
 
-      @mods << KspMod::Mod.new( f )
+      mod = KspMod::Mod.new( f )
+      @mods[mod.name] = { mod.version_s => mod }
     end
 
     return res
@@ -71,7 +100,7 @@ class KspMod::Cli
     when :list
       self.list
     when :install
-      puts "install"
+      self.install
     when :uninstall
       puts "uninstall"
     else

@@ -5,6 +5,7 @@
 
 class KspMod::Shell::Sh < KspMod::Shell::Base
   def initialize
+    super
   end
 
   def unzip

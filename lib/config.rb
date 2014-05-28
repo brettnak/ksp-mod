@@ -1,6 +1,6 @@
 class KspMod::Config
 
-  attr_accessor :mod_search, :config_search, :staging_directory, :loaded_configs
+  attr_accessor :mod_search, :config_search, :staging_directory, :loaded_configs, :dryrun
 
   TEMPLATE_REPLACEMENTS = {
     "v!KSP_MOD_ROOT" => KspMod::ROOT,
@@ -11,6 +11,7 @@ class KspMod::Config
     @loaded_configs = []
     @mod_search = []
     @config_search = []
+    @dryrun = false
 
     add_config_file( initial_config_yaml )
 
@@ -28,9 +29,10 @@ class KspMod::Config
 
     config = YAML::load_file( config_file )
 
-    msp = config.fetch( 'mod_search_path', [] )
-    csp = config.fetch( 'config_search_path', [] )
-    sd  = config.fetch( 'staging_directory', nil )
+    msp    = config.fetch( 'mod_search_path', [] )
+    csp    = config.fetch( 'config_search_path', [] )
+    sd     = config.fetch( 'staging_directory', nil )
+    dryrun = config.fetch( 'dryrun', :not_set )
 
     msp.map! { |p| template_path_entry(p) }
     csp.map! { |p| template_path_entry(p) }
@@ -43,6 +45,7 @@ class KspMod::Config
     @mod_search        = msp + @mod_search
     @staging_directory = sd unless sd.nil?
     @config_search    += csp
+    @dryrun            = !!dryrun unless dryrun == :not_set
   end
 
   def template_path_entry( path_entry )

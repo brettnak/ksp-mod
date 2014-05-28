@@ -10,3 +10,5 @@ config_search_path:
   - v!HOME/.ksp_mod_config.yml
 
 staging_directory: v!HOME/.ksp_mod/staging
+
+dryrun: true
