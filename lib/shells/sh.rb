@@ -20,17 +20,20 @@ class KspMod::Shell::Sh < KspMod::Shell::Base
 
     log.debug( "SHELL-SH" ) { "Executing `#{cmd}` as subprocess" }
     Open3.popen3( cmd ) do |stdin, stdout, stderr, waiter|
-      Thread.new do
+      t_out = Thread.new do
         stdout.each_line do |line|
           log.debug( "SHELL-SH-OUT" ) { line.strip }
         end
       end
 
-      Thread.new do
+      t_err = Thread.new do
         stderr.each_line do |line|
-          log.debug( "SHELL-SH-ERR" ) { line }
+          log.debug( "SHELL-SH-ERR" ) { line.strip }
         end
       end
+
+      t_out.join
+      t_err.join
 
       exit_value = waiter.value
     end

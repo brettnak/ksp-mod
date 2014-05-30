@@ -44,7 +44,23 @@ module KspMod::Shell
       log.debug( "SHELL" ) { "Opening `#{dest}` for writing" }
       File.open( dest, 'wb' ) do |f|
         log.debug( "SHELL" ) { "Downloading #{source}" }
-        f.write HTTParty.get( source ).parsed_response
+
+        # TODO: Switch to net/http or curb/curl to do a streaming download
+        raw_response = nil
+        retries = 3
+        begin
+          raw_response = HTTParty.get( source ).parsed_response
+        rescue URI::InvalidURIError => e
+          raise e if retries == 0
+          retries -= 1
+          uri = e.message.gsub( / ?bad URI\(is not URI\?\): /, '' )
+          uri = URI.escape( uri )
+          source = uri
+          retry
+        end
+
+        f.write raw_response
+
         log.debug( "SHELL" ) { "Wrote #{f.pos / 1024} KB to `#{dest}`"}
       end
     end
