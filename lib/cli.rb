@@ -21,9 +21,16 @@ class KspMod::Cli
 
   # options - {}
   #   :stage - Do everything but do not copy into the KSP home directory
+  #
+  # TODO: Raise error if the mod could not be found.
   def install( options = {} )
     self.load
-    modname = ARGV.shift
+
+    @mods.each do |modname|
+      log.debug "Did index: #{modname}"
+    end
+
+    modname = options[:mod] || ARGV.shift
 
     if modname.nil?
       warn "You must specify a mod"
@@ -37,6 +44,16 @@ class KspMod::Cli
   end
 
   def uninstall
+  end
+
+  def modpack
+    file = ARGV.shift
+    modfile = YAML::load_file( file )
+
+    modfile['mods'].each do |mod|
+      log.info "Installing #{mod}"
+      self.install( :mod => mod.strip, :stage => true )
+    end
   end
 
   def select_mod_version( modname, human_version )
@@ -87,7 +104,9 @@ class KspMod::Cli
       next unless f =~ /\.kspmod\.yml/
 
       mod = KspMod::Mod.new( f )
-      @mods[mod.name] = { mod.version_s => mod }
+
+      log.debug "Indexed module: #{mod.name.strip}"
+      @mods[mod.name.strip] = { mod.version_s => mod }
     end
 
     return res
@@ -106,8 +125,7 @@ class KspMod::Cli
     when :stage
       self.install( :stage => true )
     when :modpack
-      # self.modpack
-      raise NotImplementedError, "Stub installing a Kmodpack file"
+      self.modpack
     when :uninstall
       puts "uninstall"
     else

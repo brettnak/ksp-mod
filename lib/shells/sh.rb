@@ -8,6 +8,7 @@ class KspMod::Shell::Sh < KspMod::Shell::Base
     super
   end
 
+  # TODO: raise error, don't fail silently if the archive was not unzipped.
   def unzip( zip_file, destdir )
     if @dryrun
       log.info( "DRYRUN" ) { "Unzip #{zip_file} to #{destdir}" }
