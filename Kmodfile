@@ -10,9 +10,7 @@ mods:
   - ferram_aerospace
   - kerbel_engineer
   - joint_reinforcement
-
   - procedural_ferrings
-
   - active_texture_managemant
 
 # - editor_extensions # Cannot download due to move to curseforge. X-(
