@@ -1,0 +1,58 @@
+---
+
+name: chatterer
+
+human_name: Chatterer
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 0.5.9.3
+
+version:
+  major: 0
+  minor: 5
+  patch: 93
+
+url: https://www.dropbox.com/meta_dl/eyJzdWJfcGF0aCI6ICIiLCAidGVzdF9saW5rIjogZmFsc2UsICJzZXJ2ZXIiOiAiZGwuZHJvcGJveHVzZXJjb250ZW50LmNvbSIsICJpdGVtX2lkIjogbnVsbCwgImlzX2RpciI6IGZhbHNlLCAidGtleSI6ICJ5MmNjYzVvempmMTNjZHMifQ/AAJVryQkIOkTGPTh8bA3U0-ezS36RQxbTmXIDrXPK9Mt7g?dl=1
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  GameData/Chatterer
+    dest: GameData/Chatterer
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

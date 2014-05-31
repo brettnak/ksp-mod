@@ -1,0 +1,61 @@
+---
+
+name: active_texture_management
+
+human_name: Active Texture Management
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 3.1.0
+
+version:
+  major: 3
+  minor: 1
+  patch: 0
+
+url: https://github.com/rbray89/ActiveTextureManagement/releases/download/3-1-aggressive/ActiveTextureManagement-3-1.zip
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  GameData/ActiveTextureManagement
+    dest: GameData/ActiveTextureManagement
+  -
+    src:  GameData/BoulderCo/ActiveTextureManagerConfigs
+    dest: GameData/BoulderCo/ActiveTextureManagerConfigs
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

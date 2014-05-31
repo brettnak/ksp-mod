@@ -131,6 +131,11 @@ class KspMod::Mod
       abs_src  = File.expand_path( @src,  src_stage )
       abs_dest = File.expand_path( @dest, KspMod.config.ksp_root )
 
+      dirname = File.dirname( abs_dest )
+
+      # Sometimes we need folders in folders that haven't been made
+      shell.mkdir( dirname )
+
       shell.cp( abs_src, abs_dest )
     end
   end

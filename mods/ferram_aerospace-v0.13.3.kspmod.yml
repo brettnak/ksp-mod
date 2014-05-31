@@ -1,0 +1,66 @@
+---
+
+name: ferram_aerospace
+
+human_name: Ferram Aerospace
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 0.13.3
+
+version:
+  major: 0
+  minor: 13
+  patch: 3
+
+url: https://github.com/ferram4/Ferram-Aerospace-Research/releases/download/v0.13.3/FerramAerospaceResearch_v0_13_3.zip
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src: GameData/FerramAerospaceResearch/
+    dest: GameData/FerramAerospaceResearch/
+
+  -
+    src: Ships/SPH
+    dest: Ships/SPH
+
+  -
+    src: Ships/VAB
+    dest: Ships/VAB
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

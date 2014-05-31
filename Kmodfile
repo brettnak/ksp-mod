@@ -1,0 +1,19 @@
+mods:
+  - toolbar_plugin
+  - enhanced_navball
+  - docking_port_alignment
+  - module_manager
+  - precise_node
+  - minimum_ambience
+  - b9_aerospace
+  - chatterer
+  - ferram_aerospace
+  - kerbel_engineer
+  - joint_reinforcement
+
+  - procedural_ferrings
+
+  - active_texture_managemant
+
+# - editor_extensions # Cannot download due to move to curseforge. X-(
+# - distant_objects # Unavailable w/o a JS interstitial

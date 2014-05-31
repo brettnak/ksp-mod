@@ -1,0 +1,58 @@
+---
+
+name: distant_objects
+
+human_name: Distant Objects
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 0.1.3
+
+version:
+  major: 0
+  minor: 1
+  patch: 3
+
+url: https://dl.boxcloud.com/bc/4/f5f7618d5ac0e369e306a5fa829b534e/3pJ9kgUl0k8Fw…Hd27H7SnZ-CBQ6VjhHwMfxEt1IXJATr-0vRCJYwfF1AimC86jeIcZfSO8s2A237epONdaiwsX/
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  "eg: MyModFile"
+    dest: "eg: GameData/MyModFile"
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

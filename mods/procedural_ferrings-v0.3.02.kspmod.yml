@@ -1,0 +1,58 @@
+---
+
+name: procedural_ferrings
+
+human_name: Procedural Ferrings
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 0.3.02
+
+version:
+  major: 0
+  minor: 3
+  patch: 02
+
+url: https://github.com/e-dog/ProceduralFairings/releases/download/v3.02/ProcFairings_3.02.zip
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  GameData/ProceduralFairings
+    dest: GameData/ProceduralFairings
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

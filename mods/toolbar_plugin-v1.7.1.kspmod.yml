@@ -1,0 +1,58 @@
+---
+
+name: toolbar_plugin
+
+human_name: Toolbar Plugin
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 1.7.1
+
+version:
+  major: 1
+  minor: 7
+  patch: 1
+
+url: http://blizzy.de/toolbar/Toolbar-1.7.1.zip
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  Toolbar-1.7.1/GameData/000_Toolbar
+    dest: GameData/000_Toolbar
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

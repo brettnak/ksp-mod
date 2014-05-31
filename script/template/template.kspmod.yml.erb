@@ -1,0 +1,58 @@
+---
+
+name: <%= @name || "computer name here, eg: \"enhanced_navball\"" %>
+
+human_name: <%= @human_name || "\"eg: Enhanced Navball\"" %>
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: <%= @external_version || "Developer version" %>
+
+version:
+  major: <%= @internal_version_major || "major version, ie: 0" %>
+  minor: <%= @internal_version_minor || "minor version, ie: 0" %>
+  patch: <%= @internal_version_patch || "patch version, ie: 0" %>
+
+url: <%= @url || "url of zip" %>
+
+# Only type supported
+archive_type: <%= @archive_type || "zip" %>
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  "eg: MyModFile"
+    dest: "eg: GameData/MyModFile"
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

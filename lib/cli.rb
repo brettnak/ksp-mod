@@ -105,11 +105,14 @@ class KspMod::Cli
       self.install
     when :stage
       self.install( :stage => true )
+    when :modpack
+      # self.modpack
+      raise NotImplementedError, "Stub installing a Kmodpack file"
     when :uninstall
       puts "uninstall"
     else
       warn "I don't recognize #{command} as a valid command."
-      warn "I support only `list`, `install`, `stage`, and `uninstall`"
+      warn "I support only `list`, `install`, `modpack`, `stage`, and `uninstall`"
       exit 1
     end
   end
