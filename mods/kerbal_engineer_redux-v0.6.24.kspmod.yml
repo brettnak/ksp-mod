@@ -24,7 +24,7 @@ archive_type: zip
 # Only include dependencies to other plugins in the dependencies section
 files:
   -
-    src:  GameData/Engineer
+    src:  Engineer
     dest: GameData/Engineer
 
 # Not Implemented

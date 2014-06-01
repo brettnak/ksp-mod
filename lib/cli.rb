@@ -52,7 +52,7 @@ class KspMod::Cli
 
     modfile['mods'].each do |mod|
       log.info "Installing #{mod}"
-      self.install( :mod => mod.strip, :stage => true )
+      self.install( :mod => mod.strip )
     end
   end
 

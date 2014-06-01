@@ -26,8 +26,8 @@ archive_type: zip
 # Only include dependencies to other plugins in the dependencies section
 files:
   -
-    src: EnhancedNavball
-    dest: GameData/EnhancedNavball
+    src: EnhancedNavBall
+    dest: GameData/EnhancedNavBall
 
 # Not Implemented
 after_install:
