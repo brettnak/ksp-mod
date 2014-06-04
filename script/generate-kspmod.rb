@@ -22,7 +22,7 @@ class KspModTemplateGenerator
     puts "To add the files section of your template, stage this mod:"
 
     stage_dir = "~/.ksp_mod/staging/#{@name}-#{@internal_version}"
-    puts "$ bundle exec ruby ./ksp_mod.rb stage #{@name} && cd #{stage_dir}"
+    puts "$ bundle exec ruby ./ksp_mod.rb -vvv stage #{@name} && tree #{stage_dir}"
   end
 
   def set_vars
