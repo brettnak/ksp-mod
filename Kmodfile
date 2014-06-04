@@ -13,5 +13,9 @@ mods:
   - procedural_ferrings
   - active_texture_management
 
+# TODO
+#  - kerbal_alarm_clock
+#  - deadly_reentry
+
 # - editor_extensions # Cannot download due to move to curseforge. X-(
 # - distant_objects # Unavailable w/o a JS interstitial
