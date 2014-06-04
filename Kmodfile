@@ -11,11 +11,18 @@ mods:
   - kerbal_engineer_redux
   - joint_reinforcement
   - procedural_ferrings
+  - kerbal_attachment_system
+  - infernal_robotics
+  - ksp_interstellar
   - active_texture_management
 
+<<<<<<< HEAD
 # TODO
 #  - kerbal_alarm_clock
 #  - deadly_reentry
 
 # - editor_extensions # Cannot download due to move to curseforge. X-(
+=======
+# - editor_extensions # (JS Intersticial) Cannot download due to move to curseforge. X-(
+>>>>>>> update modfile
 # - distant_objects # Unavailable w/o a JS interstitial
