@@ -19,7 +19,7 @@ class KspMod::Mod
   #
   # Returns Ksp::Mod instance
   def initialize( yaml_path )
-    log.info( "Found module: #{yaml_path}" )
+    log.debug( "Found module: #{yaml_path}" )
     parse( yaml_path )
   end
 

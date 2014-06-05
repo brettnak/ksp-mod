@@ -1,19 +1,19 @@
 ---
 
-name: kerbal_alarm_clock
+name: editor_extensions
 
-human_name: Kerbal Alarm Clock
+human_name: Editor Extensions
 
 # If the developer uses a different versioning scheme, use this to
 # indicate the developer's listed version.
-original_version: 2.7.3.0
+original_version: 1.1
 
 version:
-  major: 2
-  minor: 7
-  patch: 30
+  major: 0
+  minor: 1
+  patch: 1
 
-url: "http://addons.curse.cursecdn.com/files/2201/599/KerbalAlarmClock_2.7.3.0.zip?v3=246783074&p2=12216170&x2=19187dc9&verify=91bbca74&file-id=2201599"
+url: https://github.com/MachXXV/EditorExtensions/blob/master/Releases/EditorExtensions_v1.1.zip?raw=true
 
 # Only type supported
 archive_type: zip
@@ -24,8 +24,8 @@ archive_type: zip
 # Only include dependencies to other plugins in the dependencies section
 files:
   -
-    src:  KerbalAlarmClock_2.7.3.0/GameData/TriggerTech
-    dest: GameData/TriggerTech
+    src:  EditorExtensions
+    dest: GameData/EditorExtensions
 
 # Not Implemented
 after_install:
