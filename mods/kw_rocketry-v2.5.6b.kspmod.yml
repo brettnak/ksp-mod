@@ -1,0 +1,58 @@
+---
+
+name: kw_rocketry
+
+human_name: KW Rocketry
+
+# If the developer uses a different versioning scheme, use this to
+# indicate the developer's listed version.
+original_version: 2.5.6b
+
+version:
+  major: 2
+  minor: 5
+  patch: 6
+
+url: http://kerbal.curseforge.com/ksp-mods/220894-kw-rocketry/files/2203194/download
+
+# Only type supported
+archive_type: zip
+
+# All `src:` paths are relative the root of the extracted zip.
+# All `dest:` paths are relative the KSP root
+# These can be files OR directories.  Make sure not to include dependencies here.
+# Only include dependencies to other plugins in the dependencies section
+files:
+  -
+    src:  KW Release Package v2.5.6B/GameData/KWRocketry
+    dest: GameData/KWRocketry
+
+# Not Implemented
+after_install:
+  - null
+
+# Not Implemented
+after_uninstall:
+  - null
+
+# Not Implemented
+dependencies:
+  # Most modules need these.  Remove if not necessary
+  -
+    mod: toolbar
+    version:
+      major: 1
+      minor: 7
+      patch: 0
+    higher_major: false
+    higher_minor: false
+    higher_patch: true
+  -
+    mod: module_manager
+    version:
+      major: 0
+      minor: 25
+      patch: 1
+    higher_major: false
+    higher_minor: false
+    higher_patch: true

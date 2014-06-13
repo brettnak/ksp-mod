@@ -19,15 +19,10 @@ mods:
   - distant_objects
   - active_texture_management
   - kethane
+  - kw_rocketry
 
 # TODO
 # - deadly_reentry_continued
 # - remote_tech_2
 # - mk2_cockpit_internals
 # - In game launch window planner?
-
-# Problematic:
-# These are on media fire and/or curseforge and have JS interstitials with
-# expiring download links.  Use mechanize & v8 to automate?
-# - editor_extensions
-# - distant_objects
