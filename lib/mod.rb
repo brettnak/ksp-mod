@@ -11,8 +11,6 @@ class KspMod::Mod
     :dependencies,
     :archive_type
 
-  attr_reader :shell
-
   # Public:
   #
   # yaml_path - Path to the Yaml file to install
@@ -25,9 +23,14 @@ class KspMod::Mod
 
   # options - {}
   #   :stage - Do everything but do not copy into the KSP home directory
+  #   :force - Force everything to be redownloaded & reinstalled
   def install( options = {} )
     log.info( "Installing #{@name} @ #{version_s}" )
-    set_shell
+
+    if installed?
+      log.info( "#{name} was already installed.  Use --force to reinstall" )
+      return
+    end
 
     create_staging_directory
     download
@@ -35,9 +38,22 @@ class KspMod::Mod
     copy_files unless options[:stage]
   end
 
+  def installed?( options = {} )
+    installed = true
+
+    files.each do |managed_path|
+      installed = managed_path.installed?( shell )
+      break if ! installed
+    end
+
+    log.info { "Detected #{@name} to be installed? #{installed}" }
+
+    return installed
+  end
+
   def create_staging_directory
     log.debug( "Creating staging directory #{staging_directory}" )
-    @shell.mkdir( staging_directory )
+    shell.mkdir( staging_directory )
   end
 
   def download
@@ -45,27 +61,31 @@ class KspMod::Mod
     log.debug( "Downloading archive from: #{@url}" )
     log.debug( "Downloading archive to: #{archive_location}" )
 
-    @shell.download( @url, archive_location )
+    shell.download( @url, archive_location )
   end
 
   def unpack
     log.info( "Unpacking Archive" )
     log.debug( "Unpacking Archive to #{staging_directory}" )
 
-    # TODO: use archive_type to determine correct unpacking method for @shell
-    @shell.unzip( archive_location, staging_directory )
+    # TODO: use archive_type to determine correct unpacking method for shell
+    shell.unzip( archive_location, staging_directory )
   end
 
   def copy_files
     log.info( "Copying files" )
 
     @files.each do |file|
-      file.install( @shell, staging_directory )
+      file.install( shell, staging_directory )
     end
   end
 
   def uninstall
-    set_shell
+    raise NotImplementedError, "Someone still has to do this..."
+  end
+
+  def shell
+    shell ||= KspMod::Shell::Base.new_for_system
   end
 
   def staging_directory
@@ -109,10 +129,6 @@ class KspMod::Mod
     return "archive.zip"
   end
 
-  def set_shell
-    @shell = KspMod::Shell::Base.new_for_system
-  end
-
   class ManagedPath
     include KspMod::Loggable
     attr_accessor :src, :dest
@@ -138,5 +154,12 @@ class KspMod::Mod
 
       shell.cp( abs_src, abs_dest )
     end
+
+    def installed?( shell )
+      abs_dest = File.expand_path( @dest, KspMod.config.ksp_root )
+      log.debug { "Looking for #{abs_dest}" }
+      shell.exists?( abs_dest )
+    end
+
   end
 end

@@ -19,6 +19,10 @@ module KspMod::Shell
       return KspMod::Shell::Sh
     end
 
+    def exists?( path )
+      return File.exists?( path )
+    end
+
     # Provided by native ruby
     def cp( source, dest )
       if @dryrun

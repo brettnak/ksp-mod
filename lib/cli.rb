@@ -21,26 +21,50 @@ class KspMod::Cli
 
   # options - {}
   #   :stage - Do everything but do not copy into the KSP home directory
+  #   :mods - The internal names of the mods to install
+  #   :mod - alias for :mods
+  #   :force - reinstall a mod if it's already installed
   #
-  # TODO: Raise error if the mod could not be found.
+  # TODO: Raise error if the mod could not be found or installed.
   def install( options = {} )
+    options = options.dup
+
     self.load
 
     @mods.each do |modname|
       log.debug "Did index: #{modname}"
     end
 
-    modname = options[:mod] || ARGV.shift
+    modnames = []
 
-    if modname.nil?
+    if options[:mod] || options[:mods]
+      modnames = Array(options[:mods] || options[:mod])
+    else
+      while arg = ARGV.shift
+        modnames << arg
+      end
+    end
+
+    modnames = modnames.map(&:to_s).map(&:strip)
+
+    force = modnames.include?( "--force" ) || modnames.include?( "-f" )
+    modnames.delete( "--force" )
+    modnames.delete( "-f" )
+
+    if modnames.empty?
       warn "You must specify a mod"
       exit 1
     end
 
-    mod_version = modname.split("@")
-    mod = mod_version.size == 2 ? select_mod_version( mod_version.first, mod_version.last ) : select_mod_max_version( mod_version.first )
+    # Don't obliterate a force setting set before here
+    options[:force] = options.fetch( :force, force )
 
-    mod.install( options )
+    modnames.each do |modname|
+      mod_version = modname.split("@")
+      mod = mod_version.size == 2 ? select_mod_version( mod_version.first, mod_version.last ) : select_mod_max_version( mod_version.first )
+
+      mod.install( options )
+    end
   end
 
   def uninstall

@@ -18,6 +18,7 @@ mods:
   - editor_extensions
   - distant_objects
   - active_texture_management
+  - kethane
 
 # TODO
 # - deadly_reentry_continued

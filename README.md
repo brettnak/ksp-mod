@@ -68,16 +68,18 @@ Take a look at ./Kmodfile for an example.
 #### TODO 0.0.2
 
   - [x] ksp_mod install plugin[@version]
+  - [ ] md5 checksums on downloaded archives
   - [ ] ksp_mod uninstall plugin
   - [ ] KSP_HOME detection
+  - [ ] Windows support
+    - convert unix -> windows dir structures from config files
 
 #### TODO 0.1.0
 
-  - version: `>~ 0.1.0`
   - [ ] Dependency management
   - [ ] Installed Plugin Detection
 
-#### TODO R2
+#### TODO 0.2.0
 
   - version: `>~ 0.2.0`
-  - [ ] ksp_mod refresh - Command to reload the KPluginSet after editing
+  - [ ] ksp_mod refresh - Command to reload the Kmodfile after editing

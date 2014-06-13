@@ -1,19 +1,19 @@
 ---
 
-name: infernal_robotics
+name: kethane
 
-human_name: Infernal Robotics
+human_name: Kethane Mod
 
 # If the developer uses a different versioning scheme, use this to
 # indicate the developer's listed version.
-original_version: v0.15d
+original_version: 0.8.6
 
 version:
   major: 0
-  minor: 0
-  patch: 15
+  minor: 8
+  patch: 6
 
-url: https://github.com/sirkut/InfernalRobotics/releases/download/v0.15d/InfernalRobotics0.15d.zip
+url: https://nabaal.net/files/kethane/Kethane-0.8.6.zip
 
 # Only type supported
 archive_type: zip
@@ -24,8 +24,8 @@ archive_type: zip
 # Only include dependencies to other plugins in the dependencies section
 files:
   -
-    src: GameData/MagicSmokeIndustries
-    dest: GameData/MagicSmokeIndustries
+    src:  GameData/Kethane
+    dest: GameData/Kethane
 
 # Not Implemented
 after_install:

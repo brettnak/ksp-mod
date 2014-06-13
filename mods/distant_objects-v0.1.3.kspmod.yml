@@ -13,7 +13,7 @@ version:
   minor: 1
   patch: 3
 
-url: https://dl.boxcloud.com/bc/4/f5f7618d5ac0e369e306a5fa829b534e/3pJ9kgUl0k8Fw…Hd27H7SnZ-CBQ6VjhHwMfxEt1IXJATr-0vRCJYwfF1AimC86jeIcZfSO8s2A237epONdaiwsX/
+url: 'https://app.box.com/index.php?rm=box_download_shared_file&shared_name=7xdwo92oc00dkjxkilwb&file_id=f_14431806788'
 
 # Only type supported
 archive_type: zip
@@ -24,8 +24,8 @@ archive_type: zip
 # Only include dependencies to other plugins in the dependencies section
 files:
   -
-    src:  "eg: MyModFile"
-    dest: "eg: GameData/MyModFile"
+    src:  GameData/DistantObject
+    dest: GameData/DistantObject
 
 # Not Implemented
 after_install:
