@@ -7,6 +7,7 @@ A simple tool for adding/changing plugins for Kerbal Space Program.
 
   - ruby 1.9.3 (Probably works on >2.0 but not tested)
   - bundler (`gem install bundler`)
+  - OSX or Ubuntu (Currently no windows support)
 
 ## Installation
 
